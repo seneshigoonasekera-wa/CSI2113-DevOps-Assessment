@@ -1,6 +1,6 @@
 services:
   web:
-    build: .
+    image: seneshi/csi2113-devops-app:latest
     container_name: csi2113-app
     ports:
       - "5000:5000"
