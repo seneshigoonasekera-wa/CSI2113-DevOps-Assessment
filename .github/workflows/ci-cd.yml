@@ -47,3 +47,23 @@ jobs:
       - name: Push Docker image
         run: |
           docker push seneshi/csi2113-devops-app:latest
+
+  deploy-local:
+    needs: docker-build-and-push
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Pull latest Docker image
+        run: |
+          docker compose pull
+
+      - name: Deploy application
+        run: |
+          docker compose up -d
+
+      - name: Check running container
+        run: |
+          docker compose ps
